@@ -1,24 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Accordion from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
 import OnOff from "./components/OnOff/OnOff";
+import UncontrolledOnOff from "./components/UncontrolledOnOff/UncontrolledOnOff";
 
 function App() {
   // debugger
   console.log("App rendering");
+
+    let [collapsed, setCollapsed] = useState(true)
+    let [swithOn, setSwithOn] = useState(false)
+
   return (
     <div>
-        <OnOff />
-        <OnOff />
-        <OnOff />
+        {/*<OnOff*/}
+        {/*    on={swithOn}*/}
+        {/*    onChange={(on) => setSwithOn(on)} />*/}
 
-      {/*<PageTitle title={"This is App Component"}/>*/}
-      {/*<PageTitle title={"My friends"}/>*/}
-      {/*Article 1*/}
-      {/*<Rating value={3}/>*/}
-      <Accordion title={"--Menu--"} />
-      <Accordion title={"--Users--"} />
+        <UncontrolledOnOff onChange={setSwithOn}/> {swithOn.toString()}
+
+      <Accordion title={"--Menu--"}
+                 collapsed={collapsed}
+                 onChange={()=>setCollapsed(!collapsed)} />
       Article 2
       <Rating />
 
