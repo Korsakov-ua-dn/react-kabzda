@@ -13,17 +13,17 @@ function App() {
     let [swithOn, setSwithOn] = useState(false)
 
   return (
-    <div>
-        {/*<OnOff*/}
-        {/*    on={swithOn}*/}
-        {/*    onChange={(on) => setSwithOn(on)} />*/}
+    <div className={"App"}>
+      <OnOff 
+        on={swithOn}
+        onChange={setSwithOn}/>
 
-        <UncontrolledOnOff onChange={setSwithOn}/> {swithOn.toString()}
+      <UncontrolledOnOff onChange={setSwithOn}/> {swithOn.toString()}
 
       <Accordion title={"--Menu--"}
                  collapsed={collapsed}
-                 onChange={()=>setCollapsed(!collapsed)} />
-      Article 2
+                 onChange={()=>setCollapsed(!collapsed)}
+                 items={[{title: "Dimych", value: 1}, {title: "Valera", value: 2}, {title: "Artem", value: 3}, {title: "Viktor", value: 4}]} />
       <Rating />
 
     </div>
