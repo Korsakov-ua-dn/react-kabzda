@@ -7,15 +7,15 @@ type ItemType = {
 
 type SelectPropsType = {
     value: any
-    onChange: (value: any)=> void
+    // onChange: (value: any)=> void
     items: ItemType[]
 }
 
 export function Select (props: SelectPropsType) {
     return (
         <div>
-            <div>{}</div>
-            {props.items.map(i=><div>{i.title}</div>)}
+            <div>{props.items.find(i=> i.value === props.value)}</div>
+            {props.items.map((i, index)=><div key={index}>{i.title}</div>)}
         </div>
     )
 }

@@ -4,28 +4,39 @@ import Accordion from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
 import OnOff from "./components/OnOff/OnOff";
 import UncontrolledOnOff from "./components/UncontrolledOnOff/UncontrolledOnOff";
+import {Select} from "./components/Select/Select";
 
 function App() {
-  // debugger
   console.log("App rendering");
 
     let [collapsed, setCollapsed] = useState(true)
-    let [swithOn, setSwithOn] = useState(false)
+    let [switchOn, setSwitchOn] = useState(false)
 
   return (
     <div className={"App"}>
       <OnOff 
-        on={swithOn}
-        onChange={setSwithOn}/>
+        on={switchOn}
+        onChange={setSwitchOn}/>
 
-      <UncontrolledOnOff onChange={setSwithOn}/> {swithOn.toString()}
-
+      <UncontrolledOnOff onChange={setSwitchOn}/> {switchOn.toString()}
       <Accordion title={"--Menu--"}
                  collapsed={collapsed}
                  onChange={()=>setCollapsed(!collapsed)}
-                 items={[{title: "Dimych", value: 1}, {title: "Valera", value: 2}, {title: "Artem", value: 3}, {title: "Viktor", value: 4}]} />
+                 items={[
+                     {title: "Dimych", value: 1},
+                     {title: "Valera", value: 2},
+                     {title: "Artem", value: 3},
+                     {title: "Viktor", value: 4}
+                 ]} />
       <Rating />
-
+      < Select value={1}
+               // onChange={()=> }
+               items={[
+                   {title: "Moskow", value: "1"},
+                   {title: "Kyev", value: "2"},
+                   {title: "Donetsk", value: "3"},
+                   {title: "Minsk", value: "4"}
+               ]} />
     </div>
   );
 }
