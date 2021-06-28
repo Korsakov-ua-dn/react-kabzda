@@ -29,14 +29,14 @@ function App() {
                      {title: "Viktor", value: 4}
                  ]} />
       <Rating />
-      < Select value={1}
+      {/* < Select value={1}
                // onChange={()=> }
                items={[
                    {title: "Moskow", value: "1"},
                    {title: "Kyev", value: "2"},
                    {title: "Donetsk", value: "3"},
                    {title: "Minsk", value: "4"}
-               ]} />
+               ]} /> */}
     </div>
   );
 }
