@@ -4,12 +4,12 @@ import Accordion from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
 import OnOff from "./components/OnOff/OnOff";
 import UncontrolledOnOff from "./components/UncontrolledOnOff/UncontrolledOnOff";
-import {Select} from "./components/Select/Select";
+// import {Select} from "./components/Select/Select";
 
 function App() {
   console.log("App rendering");
 
-    let [collapsed, setCollapsed] = useState(true)
+
     let [switchOn, setSwitchOn] = useState(false)
 
   return (
@@ -20,8 +20,6 @@ function App() {
 
       <UncontrolledOnOff onChange={setSwitchOn}/> {switchOn.toString()}
       <Accordion title={"--Menu--"}
-                 collapsed={collapsed}
-                 onChange={()=>setCollapsed(!collapsed)}
                  items={[
                      {title: "Dimych", value: 1},
                      {title: "Valera", value: 2},

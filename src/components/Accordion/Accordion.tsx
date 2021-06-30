@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useReducer} from "react";
+import {reducer, TOGGLE_COLLAPSED} from "./reducer";
 
 type ItemType = {
     title: string
@@ -6,12 +7,12 @@ type ItemType = {
 }
 type AccordionPropsType = {
     title: string
-    collapsed: boolean
-    onChange: ()=> void
     items: ItemType[]
 }
 
 function Accordion(props: AccordionPropsType) {
+
+    let [state, dispatch] = useReducer(reducer, {collapsed: false})
 
     const onClickItem = (i: number) => {
         alert(i)
@@ -20,18 +21,18 @@ function Accordion(props: AccordionPropsType) {
     return (
         <>
             <AccordionTitle title={props.title}
-                            onChange={props.onChange} />
-            {!props.collapsed && <AccordionBody onClickItem={onClickItem} items={props.items}/>}
+                            onClick={() => dispatch({type: TOGGLE_COLLAPSED})} />
+            {!state.collapsed && <AccordionBody onClickItem={onClickItem} items={props.items}/>}
         </>
     )
 }
 
 type AccordionTitlePropsType = {
     title: string
-    onChange: ()=> void
+    onClick: ()=> void
 }
 function AccordionTitle(props: AccordionTitlePropsType) {
-    return <h3 onClick={props.onChange}>{props.title}</h3>
+    return <h3 onClick={props.onClick}>{props.title}</h3>
 }
 
 type AccordionBodyPropsType = {
