@@ -80,3 +80,42 @@ export const SetIntervalExample = () => {
         </> 
     )
 }
+
+export const ResetEffectExample = () => {
+    
+    const [count, setCounter] = useState<number>(0)
+    console.log(`ResetEffectExample + ${count}`);
+
+    useEffect(() => {
+        console.log(`Effect + ${count}`)
+        return () => {
+            console.log(`Reset + ${count}`);
+        }
+    }, [count])
+  
+    
+
+    return (
+        <>
+            clock- {count}
+            <button onClick={() => setCounter(state => state + 1)} >count+</button>
+        </> 
+    )
+}
+
+export const KeyTrackerExample = () => {
+    const [text, setText] = useState('')
+    console.log(`Component render with text ${text}`);
+    useEffect(() => {
+        const handler = (e: KeyboardEvent) => {
+            console.log(e.key)
+            setText((state) => state + e.key)
+        }
+        window.addEventListener('keypress', handler)
+        return () => {
+            window.removeEventListener('keypress', handler)
+        }
+        
+    }, [])
+    return <> text- {text} </>
+}

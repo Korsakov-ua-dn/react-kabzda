@@ -1,29 +1,42 @@
 import React, { useState, useEffect } from "react"
+import {AnalogClockSkin} from './AnalogClockSkin'
+import {DigitalClockSkin} from './DigitalClockSkin'
 
-const get2DigitsTime = (num: number) => num < 10 ? "0" + num : num
-
-export const Clock: React.FC = () => {
+type ClockPropsType = {
+    mode?: "analog" | "digital"
+}
+export type ClockViewPropsType = {
+    date: Date
+}
+export const Clock: React.FC<ClockPropsType> = (props) => {
     console.log("Clock");
     
-    const [date, setDate] = useState(new Date)
+    const [date, setDate] = useState(new Date())
 
     useEffect(() => {
         console.log("useEffect");
         
         const intervalID = setInterval(() => {
             console.log("setInterval");
-            setDate(new Date)
+            setDate(new Date())
         }, 1000)  
 
         return () => clearInterval(intervalID) // убьет интервал когда компонента умрет или перерисуется
 
     }, [])
   
+    let view
+
+    switch (props.mode) {
+        case "analog":
+            view = <AnalogClockSkin date={date}/>
+            break;
+        case "digital":
+        default:
+            view = <DigitalClockSkin date={date}/>
+    }
+
     return <div>
-        <span>{get2DigitsTime(date.getHours())}</span>
-        :
-        <span>{get2DigitsTime(date.getMinutes())}</span>
-        :
-        <span>{get2DigitsTime(date.getSeconds())}</span>
+        {view}
     </div>
 }
